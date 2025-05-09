@@ -35,6 +35,18 @@ export const logout = () => {
     localStorage.removeItem('user');
 };
 
+export const register = async (userData) => {
+    try {
+        const response = await axios.post(`${API_URL}/register`, userData);
+        return response.data;
+    } catch (error) {
+        if (error.response) {
+            throw new Error(error.response.data?.message || 'Registration failed');
+        }
+        throw new Error('Error during registration');
+    }
+};
+
 export const getCurrentUser = () => {
     return JSON.parse(localStorage.getItem('user'));
 };

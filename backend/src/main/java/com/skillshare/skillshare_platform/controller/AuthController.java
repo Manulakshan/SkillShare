@@ -2,6 +2,7 @@ package com.skillshare.skillshare_platform.controller;
 
 import com.skillshare.skillshare_platform.dto.LoginRequestDto;
 import com.skillshare.skillshare_platform.dto.LoginResponseDto;
+import com.skillshare.skillshare_platform.dto.RegisterRequestDto;
 import com.skillshare.skillshare_platform.model.User;
 import com.skillshare.skillshare_platform.service.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,17 @@ public class AuthController {
         );
         
         // In a real application, you would generate a JWT token here
+        LoginResponseDto response = new LoginResponseDto();
+        response.setUsername(user.getUsername());
+        response.setUserId(user.getUserId());
+        
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<LoginResponseDto> register(@RequestBody RegisterRequestDto registerRequest) {
+        User user = authenticationService.register(registerRequest);
+        
         LoginResponseDto response = new LoginResponseDto();
         response.setUsername(user.getUsername());
         response.setUserId(user.getUserId());
