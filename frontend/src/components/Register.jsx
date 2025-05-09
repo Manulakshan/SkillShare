@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField, Typography, Container, Paper, Alert } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { register } from '../services/authService';
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -28,8 +29,14 @@ const Register = () => {
         }
 
         try {
-            // In a real application, you would make an API call here to register the user
-            console.log('Registering user:', formData);
+            const userData = {
+                username: formData.username,
+                email: formData.email,
+                password: formData.password
+            };
+            
+            await register(userData);
+            
             // Reset form
             setFormData({
                 username: '',
