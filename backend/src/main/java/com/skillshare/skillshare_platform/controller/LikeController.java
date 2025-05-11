@@ -46,7 +46,7 @@ public class LikeController {
         likeService.deleteLike(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-    
+
 
     @GetMapping
     public ResponseEntity<Map<String, Object>> getAllLikes(
