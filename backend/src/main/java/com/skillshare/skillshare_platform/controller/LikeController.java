@@ -56,6 +56,8 @@ public class LikeController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    
+
     @GetMapping(params = "postId")
     public ResponseEntity<Map<String, Object>> getLikesByPostId(
             @RequestParam Long postId,
